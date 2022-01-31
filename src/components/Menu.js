@@ -41,11 +41,12 @@ const Menu = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <MenuFilter filteredYear={filterYear}></MenuFilter>
-        <MenuItemsGrid menuItems={menu} addToCart={addToCart}></MenuItemsGrid>
-        <div className="container">My Cart:{myCart}</div>
-        <div className="container">${totalCost}</div>
-        <Order totalCost={totalCost} finishOrder={finishOrder}></Order>
+        <MenuFilter menuItems={menu} filteredYear={filterYear}>
+          <MenuItemsGrid menuItems={menu} addToCart={addToCart}></MenuItemsGrid>
+          <div className="container">My Cart:{myCart}</div>
+          <div className="container">${totalCost}</div>
+          <Order totalCost={totalCost} finishOrder={finishOrder}></Order>
+        </MenuFilter>
       </header>
     </div>
   );
