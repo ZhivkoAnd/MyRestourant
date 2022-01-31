@@ -2,6 +2,7 @@ import { useState } from "react";
 import menu from "./MenuItemList";
 import MenuFilter from "../components/MenuFilter";
 import Order from "./Order";
+import MenuItemsGrid from "./MenuItemsGrid";
 
 const Menu = () => {
   const [cart, setCart] = useState([]);
@@ -36,22 +37,15 @@ const Menu = () => {
       setTotalCost(0);
     }
   };
-  const menuList = menu.map(({ index, name, price }) => {
-    return (
-      <button key={index} onClick={() => addToCart(name, price)}>
-        {name}
-        {price}
-      </button>
-    );
-  });
+
   return (
     <div className="App">
       <header className="App-header">
-        <div className="container">{menuList}</div>
+        <MenuFilter filteredYear={filterYear}></MenuFilter>
+        <MenuItemsGrid menuItems={menu} addToCart={addToCart}></MenuItemsGrid>
         <div className="container">My Cart:{myCart}</div>
         <div className="container">${totalCost}</div>
         <Order totalCost={totalCost} finishOrder={finishOrder}></Order>
-        <MenuFilter filteredYear={filterYear}></MenuFilter>
       </header>
     </div>
   );
