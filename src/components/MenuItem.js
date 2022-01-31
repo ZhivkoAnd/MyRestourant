@@ -8,29 +8,34 @@ import Typography from "@mui/material/Typography";
 
 const MenuItem = ({ menuItem, addToCart }) => {
   return (
-    <div onClick={() => addToCart(menuItem.name, menuItem.price)}>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-          component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {menuItem.name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Add</Button>
-          <Button size="small">{menuItem.price}</Button>
-        </CardActions>
-      </Card>
-    </div>
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={menuItem.image}
+        alt="green iguana"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {menuItem.name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Lizards are a widespread group of squamate reptiles, with over 6,000
+          species, ranging across all continents except Antarctica
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button
+          size="small"
+          onClick={() =>
+            addToCart(menuItem.name, menuItem.price, menuItem.image)
+          }
+        >
+          Add to cart
+        </Button>
+        <Button size="small">{menuItem.price}</Button>
+      </CardActions>
+    </Card>
   );
 };
 
