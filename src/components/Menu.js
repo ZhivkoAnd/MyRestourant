@@ -3,6 +3,13 @@ import menu from "./MenuItemList";
 import MenuFilter from "../components/MenuFilter";
 import Order from "./Order";
 
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+
 const Menu = () => {
   const [cart, setCart] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
@@ -36,22 +43,40 @@ const Menu = () => {
       setTotalCost(0);
     }
   };
-  const menuList = menu.map(({ index, name, price }) => {
+  const menuList = menu.map(({ index, name, price, image }) => {
     return (
-      <button key={index} onClick={() => addToCart(name, price)}>
-        {name}
-        {price}
-      </button>
+      <Card sx={{ maxWidth: 345 }}>
+        <CardMedia component="img" height="140" image={image} alt="food" />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Lizards are a widespread group of squamate reptiles, with over 6,000
+            species, ranging across all continents except Antarctica
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button
+            size="small"
+            key={index}
+            onClick={() => addToCart(name, price)}
+          >
+            Add to Cart
+          </Button>
+          <Button size="small">${price}</Button>
+        </CardActions>
+      </Card>
     );
   });
   return (
     <div className="App">
       <header className="App-header">
-        <div className="container">{menuList}</div>
+        <MenuFilter filteredYear={filterYear}></MenuFilter>
+        <div className="container menuListContainer">{menuList}</div>
         <div className="container">My Cart:{myCart}</div>
         <div className="container">${totalCost}</div>
         <Order totalCost={totalCost} finishOrder={finishOrder}></Order>
-        <MenuFilter filteredYear={filterYear}></MenuFilter>
       </header>
     </div>
   );
